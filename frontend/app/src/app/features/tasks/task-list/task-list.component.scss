@@ -1,0 +1,37 @@
+/* Adicione seus estilos aqui */
+
+.table-row {
+  position: relative;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    
+    .action-buttons {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.actions-cell {
+  width: 120px; // Ajuste conforme necessário
+  padding: 0 8px !important;
+}
+
+.action-buttons {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  
+  button {
+    mat-icon {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+      line-height: 20px;
+    }
+  }
+}

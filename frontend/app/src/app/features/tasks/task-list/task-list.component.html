@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="filters">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="filters.status">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Aberto">Aberto</mat-option>
+          <mat-option value="EmAndamento">EmAndamento</mat-option>
+          <mat-option value="Concluido">Concluído</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Prioridade</mat-label>
+        <mat-select [(value)]="filters.priority">
+          <mat-option value="">Todas</mat-option>
+          <mat-option value="Baixa">Baixa</mat-option>
+          <mat-option value="Média">Média</mat-option>
+          <mat-option value="Alta">Alta</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="applyFilter()">
+        Aplicar Filtros
+      </button>
+    </div>
+  
+    <button mat-raised-button color="accent" (click)="openTaskForm()">
+      Nova Tarefa
+    </button>
+  
+    <button mat-raised-button (click)="exportToExcel()">
+      Exportar para Excel
+    </button>
+  
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+  
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+  
+      <!-- Priority Column -->
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element" class="actions-cell">
+          <div class="action-buttons">
+            <button mat-icon-button color="primary" (click)="openTaskForm(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteTask(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          class="table-row"></tr>
+    </table>
+  </div>

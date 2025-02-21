@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <span>Task Manager</span>
+  
+  <span class="spacer"></span>
+
+  <button 
+    *ngIf="authService.isLoggedIn()"
+    mat-button 
+    (click)="logout()"
+  >
+    Sair
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet> 
