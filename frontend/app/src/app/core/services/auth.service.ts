@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-
+import { environment } from '../../environments/environment';
 interface LoginResponse {
   token: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:5022/user'; // Atualizando a URL para incluir 'user'
+  private apiUrl = environment.userApi + '/user'; // Atualizando a URL para incluir 'user'
 
   constructor(private http: HttpClient, private router: Router) {}
 

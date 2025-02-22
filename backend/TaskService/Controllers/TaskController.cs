@@ -1,6 +1,9 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using TaskService.Features.Tasks.Commands;
+using TaskService.Features.Tasks.Queries;
 using TaskService.Models;
 using TaskService.Data;
 using TaskService.Services;
@@ -13,27 +16,30 @@ namespace TaskService.Controllers
     [Authorize]
     public class TaskController : ControllerBase
     {
+        private readonly IMediator _mediator;
         private readonly AppDbContext _context;
         private readonly TaskManager _taskManager;
 
-        public TaskController(AppDbContext context, TaskManager taskManager)
+        public TaskController(IMediator mediator, AppDbContext context, TaskManager taskManager)
         {
+            _mediator = mediator;
             _context = context;
             _taskManager = taskManager;
         }
 
         [HttpGet]
-        public IActionResult GetTasks([FromQuery] TodoTaskStatus? status, [FromQuery] TaskPriority? priority)
+        public async Task<IActionResult> GetTasks([FromQuery] TodoTaskStatus? status, [FromQuery] TaskPriority? priority)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var query = _context.Tasks.Where(t => t.UserId == userId);
+            var query = new GetTasksQuery
+            {
+                UserId = userId,
+                Status = status,
+                Priority = priority
+            };
 
-            if (status.HasValue)
-                query = query.Where(t => t.Status == status.Value);
-            if (priority.HasValue)
-                query = query.Where(t => t.Priority == priority.Value);
-
-            return Ok(query.ToList());
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -43,24 +49,17 @@ namespace TaskService.Controllers
                 return BadRequest(ModelState);
 
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            
-            var task = new TodoTask
+            var command = new CreateTaskCommand
             {
                 Title = request.Title,
-                Description = request.Description ?? "",
+                Description = request.Description,
                 Status = request.Status,
                 Priority = request.Priority,
-                UserId = userId,
-                CreatedAt = DateTime.UtcNow
+                UserId = userId
             };
 
-            if (task.Title.Length < 5)
-                return BadRequest("O título deve ter pelo menos 5 caracteres.");
-
-            _context.Tasks.Add(task);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetTasks), new { id = result.Id }, result);
         }
 
         [HttpPut("{id}")]
@@ -70,37 +69,37 @@ namespace TaskService.Controllers
                 return BadRequest(ModelState);
 
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var task = await _context.Tasks.FindAsync(id);
+            var command = new UpdateTaskCommand
+            {
+                Id = id,
+                Title = request.Title,
+                Description = request.Description,
+                Status = request.Status,
+                Priority = request.Priority,
+                UserId = userId
+            };
 
-            if (task == null)
+            var result = await _mediator.Send(command);
+            if (result == null)
                 return NotFound();
 
-            if (task.UserId != userId)
-                return Forbid();
-
-            task.Title = request.Title;
-            task.Description = request.Description ?? task.Description;
-            task.Status = request.Status;
-            task.Priority = request.Priority;
-
-            await _context.SaveChangesAsync();
-            return Ok(task);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(int id)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var task = await _context.Tasks.FindAsync(id);
+            var command = new DeleteTaskCommand
+            {
+                Id = id,
+                UserId = userId
+            };
 
-            if (task == null)
+            var result = await _mediator.Send(command);
+            if (!result)
                 return NotFound();
 
-            if (task.UserId != userId)
-                return Forbid();
-
-            _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
             return NoContent();
         }
 

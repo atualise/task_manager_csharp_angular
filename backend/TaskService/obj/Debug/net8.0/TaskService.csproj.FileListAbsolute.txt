@@ -272,3 +272,5 @@
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.pdb
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.genruntimeconfig.cache
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/ref/TaskService.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/MediatR.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/MediatR.Contracts.dll
