@@ -7,6 +7,7 @@ using UserService.Data;
 using System.Text.Json.Serialization;
 using UserService.Models;
 using UserService.Data;
+using UserService.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,9 @@ builder.Services.AddAuthorization();
 // Remova ou comente esta linha, pois TaskManager não pertence ao UserService
 // builder.Services.AddScoped<TaskManager>();
 
+// Adicione a configuração do Swagger
+builder.Services.AddSwaggerConfiguration();
+
 var app = builder.Build();
 
 // Certifique-se que o banco de dados seja criado
@@ -77,6 +81,14 @@ app.UseCors("AllowAll");
 
 // Adicione o middleware de autorização
 //app.UseAuthorization();
+
+// Configure o Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "User Management API v1");
+    c.RoutePrefix = string.Empty; // Para acessar o Swagger UI na raiz
+});
 
 app.MapControllers();
 

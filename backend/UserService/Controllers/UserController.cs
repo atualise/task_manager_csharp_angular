@@ -8,6 +8,9 @@ using System.Text;
 
 namespace UserService.Controllers
 {
+    /// <summary>
+    /// Controller para gerenciamento de usuários e autenticação
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
@@ -21,7 +24,16 @@ namespace UserService.Controllers
             _config = config;
         }
 
+        /// <summary>
+        /// Registra um novo usuário
+        /// </summary>
+        /// <param name="request">Dados do usuário para registro</param>
+        /// <returns>Mensagem de confirmação</returns>
+        /// <response code="200">Usuário registrado com sucesso</response>
+        /// <response code="400">Usuário já existe</response>
         [HttpPost("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(UserRegisterDto request)
         {
             // Validação básica
@@ -40,7 +52,16 @@ namespace UserService.Controllers
             return Ok("Usuário registrado.");
         }
 
+        /// <summary>
+        /// Realiza o login do usuário
+        /// </summary>
+        /// <param name="request">Credenciais do usuário</param>
+        /// <returns>Token JWT</returns>
+        /// <response code="200">Login realizado com sucesso</response>
+        /// <response code="401">Credenciais inválidas</response>
         [HttpPost("login")]
+        [ProducesResponseType(typeof(TokenResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Login(UserLoginDto request)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
@@ -48,7 +69,7 @@ namespace UserService.Controllers
                 return Unauthorized("Credenciais inválidas.");
 
             var token = GenerateJwtToken(user);
-            return Ok(new { Token = token });
+            return Ok(new TokenResponse { Token = token });
         }
 
         private string GenerateJwtToken(User user)
@@ -64,5 +85,16 @@ namespace UserService.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+    }
+
+    /// <summary>
+    /// Resposta contendo o token JWT
+    /// </summary>
+    public class TokenResponse
+    {
+        /// <summary>
+        /// Token JWT para autenticação
+        /// </summary>
+        public string Token { get; set; } = string.Empty;
     }
 }

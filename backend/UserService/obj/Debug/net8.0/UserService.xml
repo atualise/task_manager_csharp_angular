@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UserService</name>
+    </assembly>
+    <members>
+        <member name="T:UserService.Controllers.UserController">
+            <summary>
+            Controller para gerenciamento de usuários e autenticação
+            </summary>
+        </member>
+        <member name="M:UserService.Controllers.UserController.Register(UserService.Models.UserRegisterDto)">
+            <summary>
+            Registra um novo usuário
+            </summary>
+            <param name="request">Dados do usuário para registro</param>
+            <returns>Mensagem de confirmação</returns>
+            <response code="200">Usuário registrado com sucesso</response>
+            <response code="400">Usuário já existe</response>
+        </member>
+        <member name="M:UserService.Controllers.UserController.Login(UserService.Models.UserLoginDto)">
+            <summary>
+            Realiza o login do usuário
+            </summary>
+            <param name="request">Credenciais do usuário</param>
+            <returns>Token JWT</returns>
+            <response code="200">Login realizado com sucesso</response>
+            <response code="401">Credenciais inválidas</response>
+        </member>
+        <member name="T:UserService.Controllers.TokenResponse">
+            <summary>
+            Resposta contendo o token JWT
+            </summary>
+        </member>
+        <member name="P:UserService.Controllers.TokenResponse.Token">
+            <summary>
+            Token JWT para autenticação
+            </summary>
+        </member>
+        <member name="T:UserService.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:UserService.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:UserService.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:UserService.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="P:AppJsonSerializerContext.User">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.UserArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:AppJsonSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:AppJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AppJsonSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

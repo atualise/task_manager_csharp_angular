@@ -135,3 +135,10 @@
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.pdb
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.genruntimeconfig.cache
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/ref/UserService.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/UserService.xml
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.MvcApplicationPartsAssemblyInfo.cs
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.xml

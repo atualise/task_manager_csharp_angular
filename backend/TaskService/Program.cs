@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskService.Services;
 using System.Reflection;
+using TaskService.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +57,18 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<TaskManager>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+// Adicione a configuração do Swagger
+builder.Services.AddSwaggerConfiguration();
+
 var app = builder.Build();
+
+// Configure o Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Management API v1");
+    c.RoutePrefix = string.Empty; // Para acessar o Swagger UI na raiz
+});
 
 // Adicione o middleware para roteamento de controladores
 app.UseRouting();
@@ -66,59 +78,9 @@ app.UseCors("AllowAll");
 
 // Adicione o middleware de autorização
 app.UseAuthorization();
-/*
-var sampleTodos = new TodoTask[] {
-    new TodoTask
-    {
-        Id = 1,
-        Title = "Task 1",
-        Description = "Description 1",
-        Status = TodoTaskStatus.Aberto,
-        Priority = TaskPriority.Baixa
-    }
-};
 
-var todosApi = app.MapGroup("/tasks");
-todosApi.MapGet("/", () => sampleTodos);
-todosApi.MapGet("/{id}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
-*/
 // Mapeie as rotas dos controladores
 app.MapControllers();
-
-/*
-app.MapPost("/tasks", async (TaskCreateDto taskDto, TaskManager taskManager) =>
-{
-    try 
-    {
-        var newTask = await taskManager.CreateTask(taskDto);
-        return Results.Created($"/tasks/{newTask.Id}", newTask);
-    }
-    catch (Exception ex)
-    {
-        return Results.BadRequest(ex.Message);
-    }
-});
-
-app.MapGet("/tasks/export", async (TaskManager taskManager) =>
-{
-    try 
-    {
-        var excelBytes = await taskManager.ExportToExcel();
-        return Results.File(
-            excelBytes,
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            "tarefas.xlsx"
-        );
-    }
-    catch (Exception ex)
-    {
-        return Results.BadRequest(ex.Message);
-    }
-});
-*/
 
 app.Run();
 

@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaskService</name>
+    </assembly>
+    <members>
+        <member name="T:TaskService.Controllers.TaskController">
+            <summary>
+            Controller para gerenciamento de tarefas
+            </summary>
+        </member>
+        <member name="M:TaskService.Controllers.TaskController.GetTasks(System.Nullable{TaskService.Models.TodoTaskStatus},System.Nullable{TaskService.Models.TaskPriority})">
+            <summary>
+            Retorna a lista de tarefas do usuário
+            </summary>
+            <param name="status">Filtro opcional por status</param>
+            <param name="priority">Filtro opcional por prioridade</param>
+            <returns>Lista de tarefas</returns>
+        </member>
+        <member name="M:TaskService.Controllers.TaskController.CreateTask(TaskService.Models.TaskCreateDto)">
+            <summary>
+            Cria uma nova tarefa
+            </summary>
+            <param name="request">Dados da tarefa</param>
+            <returns>Tarefa criada</returns>
+        </member>
+        <member name="M:TaskService.Controllers.TaskController.UpdateTask(System.Int32,TaskService.Models.TaskCreateDto)">
+            <summary>
+            Atualiza uma tarefa existente
+            </summary>
+            <param name="id">ID da tarefa</param>
+            <param name="request">Dados atualizados da tarefa</param>
+            <returns>Tarefa atualizada</returns>
+        </member>
+        <member name="M:TaskService.Controllers.TaskController.DeleteTask(System.Int32)">
+            <summary>
+            Remove uma tarefa
+            </summary>
+            <param name="id">ID da tarefa</param>
+            <returns>Nenhum conteúdo</returns>
+        </member>
+        <member name="T:TaskService.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="P:AppJsonSerializerContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.DateOnly">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.NullableDateOnly">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.Todo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.TodoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:AppJsonSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:AppJsonSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:AppJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AppJsonSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

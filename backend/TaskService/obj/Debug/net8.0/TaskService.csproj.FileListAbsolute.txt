@@ -274,3 +274,10 @@
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/ref/TaskService.dll
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/MediatR.dll
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/MediatR.Contracts.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/TaskService.xml
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.MvcApplicationPartsAssemblyInfo.cs
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.xml

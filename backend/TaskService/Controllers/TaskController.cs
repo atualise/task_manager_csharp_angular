@@ -11,6 +11,9 @@ using ClosedXML.Excel;
 
 namespace TaskService.Controllers
 {
+    /// <summary>
+    /// Controller para gerenciamento de tarefas
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     [Authorize]
@@ -27,7 +30,14 @@ namespace TaskService.Controllers
             _taskManager = taskManager;
         }
 
+        /// <summary>
+        /// Retorna a lista de tarefas do usuário
+        /// </summary>
+        /// <param name="status">Filtro opcional por status</param>
+        /// <param name="priority">Filtro opcional por prioridade</param>
+        /// <returns>Lista de tarefas</returns>
         [HttpGet]
+        [ProducesResponseType(typeof(List<TodoTask>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTasks([FromQuery] TodoTaskStatus? status, [FromQuery] TaskPriority? priority)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
@@ -42,7 +52,14 @@ namespace TaskService.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Cria uma nova tarefa
+        /// </summary>
+        /// <param name="request">Dados da tarefa</param>
+        /// <returns>Tarefa criada</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(TodoTask), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateTask([FromBody] TaskCreateDto request)
         {
             if (!ModelState.IsValid)
@@ -62,7 +79,16 @@ namespace TaskService.Controllers
             return CreatedAtAction(nameof(GetTasks), new { id = result.Id }, result);
         }
 
+        /// <summary>
+        /// Atualiza uma tarefa existente
+        /// </summary>
+        /// <param name="id">ID da tarefa</param>
+        /// <param name="request">Dados atualizados da tarefa</param>
+        /// <returns>Tarefa atualizada</returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(TodoTask), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskCreateDto request)
         {
             if (!ModelState.IsValid)
@@ -86,7 +112,14 @@ namespace TaskService.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Remove uma tarefa
+        /// </summary>
+        /// <param name="id">ID da tarefa</param>
+        /// <returns>Nenhum conteúdo</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteTask(int id)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
