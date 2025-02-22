@@ -30,7 +30,7 @@ Um sistema completo de gerenciamento de tarefas construído com uma arquitetura 
 
 ### 1. Clone o repositório
 ```bash
-git clone https://seu-repositorio/task-management.git
+git clone https://atualise@bitbucket.org/atualise/task_manager.git
 cd task-management
 ```
 
