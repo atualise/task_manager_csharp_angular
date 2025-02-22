@@ -1,5 +1,34 @@
 /* Adicione seus estilos aqui */
 
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  
+  mat-form-field {
+    width: 200px;
+  }
+  
+  button {
+    margin-top: -20px; // Compensa o espaço extra do mat-form-field
+  }
+}
+
+.action-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
 .table-row {
   position: relative;
 
@@ -14,7 +43,7 @@
 }
 
 .actions-cell {
-  width: 120px; // Ajuste conforme necessário
+  width: 120px;
   padding: 0 8px !important;
 }
 
@@ -34,4 +63,8 @@
       line-height: 20px;
     }
   }
+}
+
+table {
+  width: 100%;
 }

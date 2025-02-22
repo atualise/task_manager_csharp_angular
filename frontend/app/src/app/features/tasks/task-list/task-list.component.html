@@ -25,13 +25,15 @@
       </button>
     </div>
   
-    <button mat-raised-button color="accent" (click)="openTaskForm()">
-      Nova Tarefa
-    </button>
+    <div class="action-buttons-container">
+      <button mat-raised-button color="accent" (click)="openTaskForm()">
+        Nova Tarefa
+      </button>
   
-    <button mat-raised-button (click)="exportToExcel()">
-      Exportar para Excel
-    </button>
+      <button mat-raised-button (click)="exportToExcel()">
+        Exportar para Excel
+      </button>
+    </div>
   
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- ID Column -->

@@ -1,0 +1,40 @@
+.task-form-container {
+  padding: 20px;
+  min-width: 400px;
+
+  h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+  }
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+}
+
+[mat-dialog-actions] {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 16px 0 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep {
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: #fff;
+    }
+  }
+}

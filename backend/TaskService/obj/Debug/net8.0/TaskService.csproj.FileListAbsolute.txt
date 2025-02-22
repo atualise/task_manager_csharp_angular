@@ -281,3 +281,4 @@
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.MvcApplicationPartsAssemblyInfo.cs
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.xml
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/TaskService/obj/Debug/net8.0/TaskService.sourcelink.json

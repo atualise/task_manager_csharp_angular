@@ -142,3 +142,4 @@
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.MvcApplicationPartsAssemblyInfo.cs
 /Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.xml
+/Users/vagner/Desenvolvimento/python/selecao-iatec/backend/UserService/obj/Debug/net8.0/UserService.sourcelink.json
