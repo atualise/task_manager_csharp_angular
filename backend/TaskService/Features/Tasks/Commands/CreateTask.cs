@@ -8,8 +8,8 @@ namespace TaskService.Features.Tasks.Commands
     {
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public TodoTaskStatus Status { get; set; }
-        public TaskPriority Priority { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string Priority { get; set; } = string.Empty;
         public int UserId { get; set; }
     }
 
@@ -27,11 +27,10 @@ namespace TaskService.Features.Tasks.Commands
             var task = new TodoTask
             {
                 Title = request.Title,
-                Description = request.Description ?? "",
-                Status = request.Status,
-                Priority = request.Priority,
-                UserId = request.UserId,
-                CreatedAt = DateTime.UtcNow
+                Description = request.Description,
+                Status = Enum.Parse<TodoTaskStatus>(request.Status),
+                Priority = Enum.Parse<TaskPriority>(request.Priority),
+                UserId = request.UserId
             };
 
             _context.Tasks.Add(task);

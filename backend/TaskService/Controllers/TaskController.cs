@@ -15,7 +15,7 @@ namespace TaskService.Controllers
     /// Controller para gerenciamento de tarefas
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [Authorize]
     public class TaskController : ControllerBase
     {
@@ -55,23 +55,24 @@ namespace TaskService.Controllers
         /// <summary>
         /// Cria uma nova tarefa
         /// </summary>
-        /// <param name="request">Dados da tarefa</param>
+        /// <param name="dto">Dados da tarefa</param>
         /// <returns>Tarefa criada</returns>
         [HttpPost]
         [ProducesResponseType(typeof(TodoTask), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateTask([FromBody] TaskCreateDto request)
+        public async Task<ActionResult<TodoTask>> CreateTask(CreateTaskDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            
             var command = new CreateTaskCommand
             {
-                Title = request.Title,
-                Description = request.Description,
-                Status = request.Status,
-                Priority = request.Priority,
+                Title = dto.Title,
+                Description = dto.Description,
+                Status = dto.Status.ToString(),
+                Priority = dto.Priority.ToString(),
                 UserId = userId
             };
 

@@ -17,11 +17,11 @@
             <param name="priority">Filtro opcional por prioridade</param>
             <returns>Lista de tarefas</returns>
         </member>
-        <member name="M:TaskService.Controllers.TaskController.CreateTask(TaskService.Models.TaskCreateDto)">
+        <member name="M:TaskService.Controllers.TaskController.CreateTask(TaskService.Models.CreateTaskDto)">
             <summary>
             Cria uma nova tarefa
             </summary>
-            <param name="request">Dados da tarefa</param>
+            <param name="dto">Dados da tarefa</param>
             <returns>Tarefa criada</returns>
         </member>
         <member name="M:TaskService.Controllers.TaskController.UpdateTask(System.Int32,TaskService.Models.UpdateTaskDto)">
