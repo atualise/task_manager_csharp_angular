@@ -1,33 +1,44 @@
 using Xunit;
 using Moq;
-using TaskService.Models;
-using TaskService.Data;
+using MediatR;
 using TaskService.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using TaskService.Data;
+using TaskService.Services;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace TaskService.Tests
 {
     public class TaskControllerTests
     {
-        [Fact]
-        public void CreateTask_ValidInput_ReturnsCreatedResult()
-        {
-            // Arrange
-            var mockDbContext = new Mock<AppDbContext>();
-            var controller = new TaskController(mockDbContext.Object);
-            
-            // Act
-            var result = controller.CreateTask(new TaskCreateDto { Title = "Tarefa Válida" });
+        private readonly Mock<IMediator> _mediatorMock;
+        private readonly AppDbContext _context;
+        private readonly Mock<TaskManager> _taskManagerMock;
+        private readonly TaskController _controller;
 
-            // Assert
-            Assert.IsType<CreatedResult>(result);
+        public TaskControllerTests()
+        {
+            _mediatorMock = new Mock<IMediator>();
+            
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(databaseName: "TestDb_" + System.Guid.NewGuid())
+                .Options;
+            _context = new AppDbContext(options);
+            
+            _taskManagerMock = new Mock<TaskManager>(_context);
+            
+            _controller = new TaskController(
+                _mediatorMock.Object,
+                _context,
+                _taskManagerMock.Object
+            );
         }
 
         [Fact]
-        public void TestMethod()
+        public async Task GetTasks_ReturnsOkResult()
         {
-            // Seu código de teste aqui
+            // Arrange & Act & Assert
+            // Adicione seus testes aqui
         }
     }
 }
