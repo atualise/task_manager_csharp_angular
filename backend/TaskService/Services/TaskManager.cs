@@ -13,34 +13,26 @@ namespace TaskService.Services
             _context = context;
         }
 
-        public async Task<TodoTask> CreateTask(TaskCreateDto taskDto)
+        public async Task<TodoTask> CreateTask(TodoTask task)
         {
-            var task = new TodoTask
-            {
-                Title = taskDto.Title,
-                Description = taskDto.Description,
-                Status = taskDto.Status,
-                Priority = taskDto.Priority,
-                CreatedAt = DateTime.UtcNow
-            };
-
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
             return task;
         }
 
-        public async Task<TodoTask?> UpdateTask(int id, TaskCreateDto taskDto)
+        public async Task<TodoTask?> UpdateTask(int id, TodoTask task)
         {
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null) return null;
+            var existingTask = await _context.Tasks.FindAsync(id);
+            if (existingTask == null) return null;
 
-            task.Title = taskDto.Title;
-            task.Description = taskDto.Description ?? task.Description;
-            task.Status = taskDto.Status;
-            task.Priority = taskDto.Priority;
+            existingTask.Title = task.Title;
+            existingTask.Description = task.Description;
+            existingTask.Status = task.Status;
+            existingTask.Priority = task.Priority;
+            existingTask.CompletionDate = task.CompletionDate;
 
             await _context.SaveChangesAsync();
-            return task;
+            return existingTask;
         }
 
         public async Task<bool> DeleteTask(int id)

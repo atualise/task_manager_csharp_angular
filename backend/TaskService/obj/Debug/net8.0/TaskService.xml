@@ -24,12 +24,12 @@
             <param name="request">Dados da tarefa</param>
             <returns>Tarefa criada</returns>
         </member>
-        <member name="M:TaskService.Controllers.TaskController.UpdateTask(System.Int32,TaskService.Models.TaskCreateDto)">
+        <member name="M:TaskService.Controllers.TaskController.UpdateTask(System.Int32,TaskService.Models.UpdateTaskDto)">
             <summary>
             Atualiza uma tarefa existente
             </summary>
             <param name="id">ID da tarefa</param>
-            <param name="request">Dados atualizados da tarefa</param>
+            <param name="dto">Dados atualizados da tarefa</param>
             <returns>Tarefa atualizada</returns>
         </member>
         <member name="M:TaskService.Controllers.TaskController.DeleteTask(System.Int32)">
@@ -49,6 +49,30 @@
             <inheritdoc />
         </member>
         <member name="M:TaskService.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TaskService.Migrations.AddCompletionDate">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.AddCompletionDate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.AddCompletionDate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.AddCompletionDate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TaskService.Migrations.UpdateTodoTask">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.UpdateTodoTask.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.UpdateTodoTask.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskService.Migrations.UpdateTodoTask.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="P:AppJsonSerializerContext.Boolean">

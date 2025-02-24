@@ -19,6 +19,10 @@ namespace TaskService.Data
             modelBuilder.Entity<TodoTask>()
                 .Property(t => t.Priority)
                 .HasConversion<string>();
+
+            modelBuilder.Entity<TodoTask>()
+                .Property(t => t.CompletionDate)
+                .IsRequired(false);
         }
     }
 }

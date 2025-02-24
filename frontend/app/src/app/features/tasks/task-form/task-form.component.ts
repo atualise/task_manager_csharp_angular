@@ -24,31 +24,43 @@ export class TaskFormComponent implements OnInit {
       title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
       status: ['Aberto', Validators.required],
-      priority: ['Baixa', Validators.required]
+      priority: ['Baixa', Validators.required],
+      completionDate: [null]
     });
   }
 
   ngOnInit() {
     if (this.data) {
-      this.form.patchValue(this.data);
+      // Converter a string de data para objeto Date se existir
+      const completionDate = this.data.completionDate ? new Date(this.data.completionDate) : null;
+  
+      this.form.patchValue({
+        ...this.data,
+        completionDate: completionDate
+      });
     }
   }
 
   save() {
     if (this.form.valid) {
-      const formValue = this.form.value;
-      const request = this.data?.id
-        ? this.taskService.updateTask(this.data.id, formValue)
-        : this.taskService.createTask(formValue);
-
-      request.subscribe({
-        next: (result) => {
-          this.dialogRef.close(result);
-        },
-        error: (error) => {
-          console.error('Erro ao salvar tarefa:', error);
-        }
-      });
+      const taskData = {
+        ...this.form.value,
+        // Garantir que a data seja enviada no formato correto
+        completionDate: this.form.value.completionDate ? 
+          this.form.value.completionDate.toISOString() : null
+      };
+      
+      if (this.data?.id) {
+        this.taskService.updateTask(this.data.id, taskData).subscribe({
+          next: () => this.dialogRef.close(true),
+          error: (error) => console.error('Erro ao atualizar tarefa:', error)
+        });
+      } else {
+        this.taskService.createTask(taskData).subscribe({
+          next: () => this.dialogRef.close(true),
+          error: (error) => console.error('Erro ao criar tarefa:', error)
+        });
+      }
     }
   }
 }

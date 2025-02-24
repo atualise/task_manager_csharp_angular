@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task, CreateTaskDto } from '../models/task.model';
 import { environment } from '../../environments/environment';
+
+export interface Task {
+  id: number;
+  title: string;
+  description?: string;
+  status: string;
+  priority: string;
+  completionDate?: Date;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +20,15 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(filters?: { status?: string; priority?: string }): Observable<Task[]> {
-    let url = this.apiUrl;
-    if (filters) {
-      const params = new URLSearchParams();
-      if (filters.status) params.append('status', filters.status);
-      if (filters.priority) params.append('priority', filters.priority);
-      url += `?${params.toString()}`;
-    }
-    return this.http.get<Task[]>(url);
+  getTasks(status?: string, priority?: string): Observable<Task[]> {
+    let params = new HttpParams();
+    if (status) params = params.set('status', status);
+    if (priority) params = params.set('priority', priority);
+    
+    return this.http.get<Task[]>(this.apiUrl, { params });
   }
 
-  createTask(task: CreateTaskDto): Observable<Task> {
+  createTask(task: Partial<Task>): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
   }
 
@@ -35,7 +40,9 @@ export class TaskService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  exportTasks(): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/export`, { responseType: 'blob' });
+  exportToExcel(): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/export`, {
+      responseType: 'blob'
+    });
   }
 }

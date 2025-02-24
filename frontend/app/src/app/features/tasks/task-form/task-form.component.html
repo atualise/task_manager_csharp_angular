@@ -36,6 +36,13 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data de Conclusão</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="completionDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </form>
   </div>
 

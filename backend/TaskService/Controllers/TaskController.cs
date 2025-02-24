@@ -83,25 +83,24 @@ namespace TaskService.Controllers
         /// Atualiza uma tarefa existente
         /// </summary>
         /// <param name="id">ID da tarefa</param>
-        /// <param name="request">Dados atualizados da tarefa</param>
+        /// <param name="dto">Dados atualizados da tarefa</param>
         /// <returns>Tarefa atualizada</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(TodoTask), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskCreateDto request)
+        public async Task<IActionResult> UpdateTask(int id, UpdateTaskDto dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            
             var command = new UpdateTaskCommand
             {
                 Id = id,
-                Title = request.Title,
-                Description = request.Description,
-                Status = request.Status,
-                Priority = request.Priority,
+                Title = dto.Title,
+                Description = dto.Description,
+                Status = dto.Status,
+                Priority = dto.Priority,
+                CompletionDate = dto.CompletionDate,
                 UserId = userId
             };
 

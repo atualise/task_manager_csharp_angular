@@ -15,5 +15,6 @@ namespace TaskService.Models
         [Required(ErrorMessage = "A prioridade é obrigatória")]
         [EnumDataType(typeof(TaskPriority), ErrorMessage = "Prioridade inválida")]
         public TaskPriority Priority { get; set; }
+        public DateTime? CompletionDate { get; set; }
     }
 } 
