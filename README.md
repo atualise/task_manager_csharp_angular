@@ -30,7 +30,7 @@ Um sistema completo de gerenciamento de tarefas construído com uma arquitetura 
 
 ### 1. Clone o repositório
 ```bash
-git clone https://atualise@bitbucket.org/atualise/task_manager.git
+git clone https://github.com/atualise/task_manager_csharp_angular.git
 cd task-management
 ```
 
